@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react'
-function WastetypeCard(){
+function AddWasteType(){
     const[item, setItem] = useState('');
     const[material, setMaterial] = useState('');
     const[link, setLink] = useState('');
@@ -76,4 +76,4 @@ function WastetypeCard(){
     );
 }
 
-export default WastetypeCard
+export default AddWasteType

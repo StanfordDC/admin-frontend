@@ -5,7 +5,7 @@ import
  import 
  { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } 
  from 'recharts';
- import WastetypeCard from './WastetypeCard'
+ import AddWasteType from './AddWasteType'
 import Wastetype from './Wastetype';
 
 function Home({showCard, listWasteTypes}) {
@@ -56,7 +56,7 @@ function Home({showCard, listWasteTypes}) {
       ];
      
 
-  return (  showCard ? <WastetypeCard/> : listWasteTypes ? <Wastetype/> :
+  return (  showCard ? <AddWasteType/> : listWasteTypes ? <Wastetype/> :
     <main className='main-container'>
         <div className='main-title'>
             <h3>DASHBOARD</h3>
