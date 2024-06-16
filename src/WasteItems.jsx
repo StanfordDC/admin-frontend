@@ -5,12 +5,16 @@ function WasteItems({prop}){
             <table>
                 <div className="items">
                     <tr>
-                        <td><h3>ITEM NAME</h3></td>
-                        <td><h3>: {prop.itemName}</h3></td>
+                        <td><h3>ITEM</h3></td>
+                        <td><h3>: {prop.item}</h3></td>
                     </tr>
                     <tr>
-                        <td><h3>DESCRIPTION</h3></td>
-                        <td><h3>: {prop.description}</h3></td>
+                        <td><h3>INSTRUCTIONS</h3></td>
+                        <td><h3>: {prop.instructions}</h3></td>
+                    </tr>
+                    <tr>
+                        <td><h3>MATERIAL</h3></td>
+                        <td><h3>: {prop.material}</h3></td>
                     </tr>
                     <tr>
                         <td><h3>RECYCLABLE</h3></td>
