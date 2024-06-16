@@ -1,17 +1,27 @@
 import React from "react";
 import { useState } from 'react'
 function WastetypeCard(){
-    const[itemName, setItemName] = useState('');
-    const[description, setDescription] = useState('');
+    const[item, setItem] = useState('');
+    const[material, setMaterial] = useState('');
+    const[link, setLink] = useState('');
+    const[instructions, setInstructions] = useState('');
     const[recyclable, setRecyclable] = useState(true);
     const[isPending, setIsPending] = useState(false);
 
-    function handleItemNameChange(event){
-        setItemName(event.target.value)
+    function handleMaterialChange(event){
+        setMaterial(event.target.value)
     }
 
-    function handleDescriptionChange(event){
-        setDescription(event.target.value)
+    function handleLinkChange(event){
+        setLink(event.target.value)
+    }
+
+    function handleItemChange(event){
+        setItem(event.target.value)
+    }
+
+    function handleInstructionsChange(event){
+        setInstructions(event.target.value)
     }
 
     function handleRecyclableChange(event){
@@ -20,10 +30,9 @@ function WastetypeCard(){
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        const canBePlaced = recyclable
-        const wasteType = {canBePlaced, description, itemName}
+        const wasteType = {instructions, item, link, material, recyclable}
         setIsPending(true)
-        fetch('http://localhost:8080/waste-type/create', {
+        fetch('http://localhost:8080/waste-type', {
             method: 'POST',
             body: JSON.stringify(wasteType)
         }).then(() => {setIsPending(false);
@@ -39,11 +48,19 @@ function WastetypeCard(){
                 <div className='main-title'>
                     <h3>ITEM NAME</h3>
                 </div>
-                <input type="text" value={itemName} onChange={handleItemNameChange}/>
+                <input type="text" value={item} onChange={handleItemChange}/>
                 <div className='main-title'>
-                    <h3>DESCRIPTION</h3>
+                    <h3>RECYCLING INSTRUCTIONS</h3>
                 </div>
-                <textarea id="text-box" value={description} onChange={handleDescriptionChange}></textarea>
+                <textarea id="text-box" value={instructions} onChange={handleInstructionsChange}></textarea>
+                <div className='main-title'>
+                    <h3>LINK FOR FURTHER INFORMATION</h3>
+                </div>
+                <input type="text" value={link} onChange={handleLinkChange}/>
+                <div className='main-title'>
+                    <h3>WASTE MATERIAL</h3>
+                </div>
+                <input type="text" value={material} onChange={handleMaterialChange}/>
                 <div className='main-title'>
                     <h3>RECYCLABLE</h3>
                 </div>
