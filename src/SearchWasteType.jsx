@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from 'react'
 import WasteItems from "./WasteItems";
-function Wastetype(){
+function SearchWasteType(){
     const[wastetypes, setWastetypes] = useState(null)
     const[listAll, setListAll] = useState(true)
     const[itemName, setItemName] = useState("")
@@ -50,4 +50,4 @@ function Wastetype(){
     </main>)
 }
 
-export default Wastetype
+export default SearchWasteType
