@@ -1,9 +1,11 @@
+import { MdDelete } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
 function WasteItems({prop}){
 
     return(
         <main className="main-container">
-            <table>
-                <div className="items">
+            <div className="items">
+                <table>
                     <tr>
                         <td><h3>ITEM</h3></td>
                         <td><h3>: {prop.item}</h3></td>
@@ -20,8 +22,12 @@ function WasteItems({prop}){
                         <td><h3>RECYCLABLE</h3></td>
                         <td><h3>: {prop.canBePlaced ? "Yes" : "No"}</h3></td>
                     </tr>
-                </div>
-            </table>
+                </table>
+                <div>
+                    <button className="add-button"><MdEdit size={25}/></button>
+                    <button className="add-button"><MdDelete size={25}/></button>
+                 </div>
+            </div>
         </main>
     )
 }
