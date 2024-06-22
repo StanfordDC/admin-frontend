@@ -12,6 +12,18 @@ function SearchWasteType(){
         setItemName(event.target.value)
     }
 
+    const handleUpdate = (e) =>{
+
+    }
+
+    const handleDelete = (item) =>{
+      fetch('http://localhost:8080/waste-type/'+item,{
+        method: 'DELETE'
+      }).then(res =>{
+        return res.json();
+      })
+    }
+
     const handleSubmit = (e) =>{
         e.preventDefault()
         setListAll(false)
@@ -45,8 +57,10 @@ function SearchWasteType(){
             </table>
         </form>
         {listAll && wastetypes && 
-        <ul className="list-item">{wastetypes.map(item=><li><WasteItems prop={item}/></li>)}</ul>}
-        {!listAll && wastetype && <ul className="list-item"><li><WasteItems prop={wastetype}/></li></ul>}
+        <ul className="list-item">{wastetypes.map(item=><li><WasteItems prop={item}
+         handleDelete={handleDelete} /></li>)}</ul>}
+        {!listAll && wastetype && <ul className="list-item"><li><WasteItems prop={wastetype} 
+        handleDelete={handleDelete}/></li></ul>}
     </main>)
 }
 
