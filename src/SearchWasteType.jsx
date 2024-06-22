@@ -6,7 +6,11 @@ function SearchWasteType(){
     const[listAll, setListAll] = useState(true)
     const[itemName, setItemName] = useState("")
     const[wastetype, setWastetype] = useState(null)
+    const[deleteWaste, setDeleteWaste] = useState(false)
 
+    const toggleDeleteWaste = () => {
+      setDeleteWaste(!deleteWaste)
+    }
     
     function handleItemNameChange(event){
         setItemName(event.target.value)
@@ -48,6 +52,25 @@ function SearchWasteType(){
 
     return(
     <main className='main-container'>
+      {deleteWaste && (
+      <div className="modal">
+        <div onClick={toggleDeleteWaste} className="overlay"></div>
+        <div className="modal-content">
+          <h2>Hello Modal</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+            perferendis suscipit officia recusandae, eveniet quaerat assumenda
+            id fugit, dignissimos maxime non natus placeat illo iusto!
+            Sapiente dolorum id maiores dolores? Illum pariatur possimus
+            quaerat ipsum quos molestiae rem aspernatur dicta tenetur. Sunt
+            placeat tempora vitae enim incidunt porro fuga ea.
+          </p>
+          <button className="close-modal" onClick={toggleDeleteWaste}>
+            CLOSE
+          </button>
+        </div>
+      </div>
+    )}
         <form action="" onSubmit={handleSubmit}>
             <table>
                 <tr>
@@ -58,10 +81,11 @@ function SearchWasteType(){
         </form>
         {listAll && wastetypes && 
         <ul className="list-item">{wastetypes.map(item=><li><WasteItems prop={item}
-         handleDelete={handleDelete} /></li>)}</ul>}
+         toggleDeleteWaste={toggleDeleteWaste} /></li>)}</ul>}
         {!listAll && wastetype && <ul className="list-item"><li><WasteItems prop={wastetype} 
-        handleDelete={handleDelete}/></li></ul>}
-    </main>)
+        toggleDeleteWaste={toggleDeleteWaste}/></li></ul>}
+    </main>
+    )
 }
 
 export default SearchWasteType
