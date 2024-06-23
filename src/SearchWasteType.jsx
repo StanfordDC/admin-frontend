@@ -25,7 +25,8 @@ function SearchWasteType(){
         method: 'DELETE'
       }).then(res =>{
         return res.json();
-      })
+      }),
+      setDeleteWaste(!deleteWaste)
     }
 
     const handleSubmit = (e) =>{
@@ -54,20 +55,20 @@ function SearchWasteType(){
     <main className='main-container'>
       {deleteWaste && (
       <div className="modal">
-        <div onClick={toggleDeleteWaste} className="overlay"></div>
+        <div className="overlay"></div>
         <div className="modal-content">
-          <h2>Hello Modal</h2>
+          <h2>Delete Waste Type</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-            perferendis suscipit officia recusandae, eveniet quaerat assumenda
-            id fugit, dignissimos maxime non natus placeat illo iusto!
-            Sapiente dolorum id maiores dolores? Illum pariatur possimus
-            quaerat ipsum quos molestiae rem aspernatur dicta tenetur. Sunt
-            placeat tempora vitae enim incidunt porro fuga ea.
+            Are you sure you want to delete this item?
           </p>
-          <button className="close-modal" onClick={toggleDeleteWaste}>
-            CLOSE
-          </button>
+          <div className="modal-buttons">
+            <button className="close-modal" onClick={toggleDeleteWaste}>
+              NO
+            </button>
+            <button className="close-modal" onClick={handleDelete}>
+              YES
+            </button>
+          </div>
         </div>
       </div>
     )}

@@ -28,7 +28,7 @@ body.active-modal {
 }
 
 .overlay {
-  background: rgba(49,49,49,0.8);
+  background: rgba(30, 30, 30, 0.8);
 }
 .modal-content {
   position: absolute;
@@ -36,15 +36,24 @@ body.active-modal {
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #f1f1f1;
+  color: #1d2634;
+  background: #9e9ea4;
   padding: 14px 28px;
   border-radius: 3px;
   max-width: 600px;
   min-width: 300px;
 }
 
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Adjust gap between buttons as needed */
+  height: 100%; /* Adjust as needed to fit your design */
+}
+
 .close-modal {
-  position: absolute;
+  flex: 1;
   top: 10px;
   right: 10px;
   padding: 5px 7px;
