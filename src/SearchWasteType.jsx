@@ -25,8 +25,7 @@ function SearchWasteType(){
         method: 'DELETE'
       }).then(res =>{
         return res.json();
-      }),
-      setDeleteWaste(!deleteWaste)
+      })
     }
 
     const handleSubmit = (e) =>{
@@ -82,9 +81,9 @@ function SearchWasteType(){
         </form>
         {listAll && wastetypes && 
         <ul className="list-item">{wastetypes.map(item=><li><WasteItems prop={item}
-         toggleDeleteWaste={toggleDeleteWaste} /></li>)}</ul>}
+         toggleDeleteWaste={toggleDeleteWaste} handleUpdate={handleUpdate}/></li>)}</ul>}
         {!listAll && wastetype && <ul className="list-item"><li><WasteItems prop={wastetype} 
-        toggleDeleteWaste={toggleDeleteWaste}/></li></ul>}
+        toggleDeleteWaste={toggleDeleteWaste} handleUpdate={handleUpdate}/></li></ul>}
     </main>
     )
 }

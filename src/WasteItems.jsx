@@ -1,6 +1,6 @@
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
-function WasteItems({prop, toggleDeleteWaste}){
+function WasteItems({prop, toggleDeleteWaste, handleUpdate}){
 
     return(
         <main className="main-container">
@@ -24,7 +24,7 @@ function WasteItems({prop, toggleDeleteWaste}){
                     </tr>
                 </table>
                 <div>
-                    <button className="add-button"><MdEdit size={25}/></button>
+                    <button className="add-button" onClick={handleUpdate}><MdEdit size={25}/></button>
                     <button className="add-button" onClick={toggleDeleteWaste}><MdDelete size={25}/></button>
                  </div>
             </div>
