@@ -27,6 +27,7 @@ function SearchWasteType(){
       }).then(res =>{
         return res.json();
       })
+      setDeleteWaste(!deleteWaste)
     }
 
     const handleSubmit = (e) =>{
