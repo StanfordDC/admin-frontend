@@ -8,8 +8,9 @@ function SearchWasteType(){
     const[wastetype, setWastetype] = useState(null)
     const[deleteWaste, setDeleteWaste] = useState(false)
 
-    const toggleDeleteWaste = () => {
+    function toggleDeleteWaste(itemName){
       setDeleteWaste(!deleteWaste)
+      setItemName(itemName)
     }
     
     function handleItemNameChange(event){
@@ -20,8 +21,8 @@ function SearchWasteType(){
       
     }
 
-    const handleDelete = (item) =>{
-      fetch('http://localhost:8080/waste-type/'+item,{
+    const handleDelete = () =>{
+      fetch('http://localhost:8080/waste-type/'+itemName,{
         method: 'DELETE'
       }).then(res =>{
         return res.json();
@@ -61,10 +62,10 @@ function SearchWasteType(){
                   Are you sure you want to delete this item?
                 </p>
                 <div className="modal-buttons">
-                  <button className="close-modal" onClick={toggleDeleteWaste}>
+                  <button className="close-modal" onClick={() => toggleDeleteWaste("")}>
                     NO
                   </button>
-                  <button className="close-modal" onClick={()=> handleDelete(item)}>
+                  <button className="close-modal" onClick={handleDelete}>
                     YES
                   </button>
                 </div>

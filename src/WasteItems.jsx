@@ -25,7 +25,7 @@ function WasteItems({prop, toggleDeleteWaste, handleUpdate}){
                 </table>
                 <div>
                     <button className="add-button" onClick={handleUpdate}><MdEdit size={25}/></button>
-                    <button className="add-button" onClick={toggleDeleteWaste}><MdDelete size={25}/></button>
+                    <button className="add-button" onClick={() => toggleDeleteWaste(prop.item)}><MdDelete size={25}/></button>
                  </div>
             </div>
         </main>
