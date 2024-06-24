@@ -21,7 +21,7 @@ function SearchWasteType(){
     }
 
     const handleDelete = (item) =>{
-      fetch('http://localhost:8080/waste-type/'+item.item,{
+      fetch('http://localhost:8080/waste-type/'+item,{
         method: 'DELETE'
       }).then(res =>{
         return res.json();
@@ -52,18 +52,7 @@ function SearchWasteType(){
 
     return(
     <main className='main-container'>
-        <form action="" onSubmit={handleSubmit}>
-            <table>
-                <tr>
-                    <td><input type="text" value={itemName} onChange={handleItemNameChange} placeholder="Search waste type"/></td>
-                    <td><button className="add-button">SEARCH</button></td>
-                </tr>
-            </table>
-        </form>
-        {listAll && wastetypes && 
-        <ul className="list-item">{wastetypes.map(item=><li><WasteItems prop={item}
-         toggleDeleteWaste={toggleDeleteWaste} handleUpdate={handleUpdate}/>
-         {deleteWaste && (
+       {deleteWaste && (
             <div className="modal">
               <div className="overlay"></div>
               <div className="modal-content">
@@ -81,28 +70,20 @@ function SearchWasteType(){
                 </div>
               </div>
             </div>
-          )}</li>)}</ul>}
+          )}
+        <form action="" onSubmit={handleSubmit}>
+            <table>
+                <tr>
+                    <td><input type="text" value={itemName} onChange={handleItemNameChange} placeholder="Search waste type"/></td>
+                    <td><button className="add-button">SEARCH</button></td>
+                </tr>
+            </table>
+        </form>
+        {listAll && wastetypes && 
+        <ul className="list-item">{wastetypes.map(item=><li><WasteItems prop={item}
+         toggleDeleteWaste={toggleDeleteWaste} handleUpdate={handleUpdate}/></li>)}</ul>}
         {!listAll && wastetype && <ul className="list-item"><li><WasteItems prop={wastetype} 
-        toggleDeleteWaste={toggleDeleteWaste} handleUpdate={handleUpdate}/>
-        {deleteWaste && (
-      <div className="modal">
-        <div className="overlay"></div>
-        <div className="modal-content">
-          <h2>Delete Waste Type</h2>
-          <p>
-            Are you sure you want to delete this item?
-          </p>
-          <div className="modal-buttons">
-            <button className="close-modal" onClick={toggleDeleteWaste}>
-              NO
-            </button>
-            <button className="close-modal" onClick={()=> handleDelete(wastetype)}>
-              YES
-            </button>
-          </div>
-        </div>
-      </div>
-    )}</li></ul>}
+        toggleDeleteWaste={toggleDeleteWaste} handleUpdate={handleUpdate}/></li></ul>}
     </main>
     )
 }
