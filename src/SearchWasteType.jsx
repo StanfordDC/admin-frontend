@@ -7,6 +7,7 @@ function SearchWasteType(){
     const[itemName, setItemName] = useState("")
     const[wastetype, setWastetype] = useState(null)
     const[deleteWaste, setDeleteWaste] = useState(false)
+    const[deletedItem, setDeletedItem] = useState("")
 
     function toggleDeleteWaste(itemName){
       setDeleteWaste(!deleteWaste)
@@ -25,14 +26,12 @@ function SearchWasteType(){
       fetch('http://localhost:8080/waste-type/'+itemName,{
         method: 'DELETE'
       }).then(res =>{
-        fetch('http://localhost:8080/waste-type')
-          .then(res => res.json())
-          .then(data => setWastetypes(data));
+        setDeletedItem(itemName)
+        setListAll(true)
+        setItemName('')
+        setDeleteWaste(!deleteWaste)
         return res.json();
       })
-      setListAll(true)
-      setItemName('')
-      setDeleteWaste(!deleteWaste)
     }
 
     const handleSubmit = (e) =>{
@@ -55,7 +54,7 @@ function SearchWasteType(){
           .then(data => {
             setWastetypes(data);
           })
-      }, [])
+      }, [deletedItem])
 
     return(
     <main className='main-container'>
