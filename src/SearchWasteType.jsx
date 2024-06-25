@@ -25,8 +25,12 @@ function SearchWasteType(){
       fetch('http://localhost:8080/waste-type/'+itemName,{
         method: 'DELETE'
       }).then(res =>{
+        fetch('http://localhost:8080/waste-type')
+          .then(res => res.json())
+          .then(data => setWastetypes(data));
         return res.json();
       })
+      setListAll(true)
       setDeleteWaste(!deleteWaste)
     }
 
