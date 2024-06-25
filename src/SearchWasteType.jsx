@@ -31,6 +31,7 @@ function SearchWasteType(){
         return res.json();
       })
       setListAll(true)
+      setItemName('')
       setDeleteWaste(!deleteWaste)
     }
 
