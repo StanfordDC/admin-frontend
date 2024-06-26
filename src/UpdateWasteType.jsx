@@ -29,11 +29,12 @@ function UpdateWasteType({prop}){
     }
 
     const handleSubmit = (e) =>{
+        id = prop.id
         e.preventDefault()
-        const wasteType = {instructions, item, link, material, recyclable}
+        const wasteType = {id, instructions, item, link, material, recyclable}
         setIsPending(true)
         fetch('http://localhost:8080/waste-type', {
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify(wasteType)
         }).then(() => {setIsPending(false);
         })

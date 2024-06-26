@@ -20,7 +20,7 @@ function WasteItems({prop, toggleDeleteWaste, handleUpdate}){
                     </tr>
                     <tr>
                         <td><h3>RECYCLABLE</h3></td>
-                        <td><h3>: {prop.canBePlaced ? "Yes" : "No"}</h3></td>
+                        <td><h3>: {prop.recyclable ? "Yes" : "No"}</h3></td>
                     </tr>
                 </table>
                 <div>
