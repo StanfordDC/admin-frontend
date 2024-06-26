@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from 'react'
 import WasteItems from "./WasteItems";
+import UpdateWasteType from "./UpdateWasteType";
 function SearchWasteType(){
     const[wastetypes, setWastetypes] = useState(null)
     const[listAll, setListAll] = useState(true)
@@ -8,6 +9,7 @@ function SearchWasteType(){
     const[wastetype, setWastetype] = useState(null)
     const[deleteWaste, setDeleteWaste] = useState(false)
     const[deletedItem, setDeletedItem] = useState("")
+    const[update, setUpdate] = useState(false)
 
     function toggleDeleteWaste(itemName){
       setDeleteWaste(!deleteWaste)
@@ -18,8 +20,9 @@ function SearchWasteType(){
         setItemName(event.target.value)
     }
 
-    const handleUpdate = () =>{
-      
+    function handleUpdate(prop){
+      setUpdate(true)
+      setWastetype(prop)
     }
 
     const handleDelete = () =>{
@@ -56,7 +59,7 @@ function SearchWasteType(){
           })
       }, [deletedItem])
 
-    return(
+    return(     update ? <UpdateWasteType prop={wastetype}/> : 
     <main className='main-container'>
        {deleteWaste && (
             <div className="modal">
