@@ -29,6 +29,7 @@ function SearchWasteType(){
       fetch('http://localhost:8080/waste-type/'+itemName,{
         method: 'DELETE'
       }).then(res =>{
+        setWastetype(null)
         setDeletedItem(itemName)
         setListAll(true)
         setItemName('')
@@ -42,6 +43,10 @@ function SearchWasteType(){
         setListAll(false)
         fetch('http://localhost:8080/waste-type/'+itemName)
           .then(res => {
+            if (res.status === 404) {
+              setWastetype(null);
+              return null;
+            }
             return res.json();
           })
           .then(data => {
