@@ -82,13 +82,13 @@ function Home({showCard, listWasteTypes}) {
                 </div>
                 <h1>4</h1>
             </div>
-            <div className='card'>
+            <div className='card' onClick={navigateToResponses}>
                 <div className='card-inner'>
                     <h3>GOOD RESPONSES</h3>
                 </div>
                 <h1>2</h1>
             </div>
-            <div className='card'>
+            <div className='card' onClick={navigateToResponses}>
                 <div className='card-inner'>
                     <h3>BAD RESPONSES</h3>
                 </div>

@@ -10,27 +10,30 @@ body.active-modal {
   overflow-y: hidden;
 }
 
-.product {
-  height: 65px;
+.object-container {
+  display: flex;
+  align-items: flex-start;
 }
 
-.product > img {
-  height: 100%;
-  width: 95px;
-  float: left;
+.object {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.product > div {
-  vertical-align: top;
-  line-height: 65px;
+.object-details {
+  flex: 1; /* Fill remaining space */
+}
+
+.object > div {
   font-size: 1.2rem;
-  float: left;
 }
 
-.product > div.price {
-  padding-left: 100px;
-  float: right;
+.response {
+  padding-right: 30px;
   font-size: 1.5rem;
+  line-height: 1;
 }
 
 
