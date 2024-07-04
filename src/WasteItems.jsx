@@ -1,7 +1,6 @@
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 function WasteItems({prop, toggleDeleteWaste, handleUpdate}){
-
     return(
         <main className="main-container">
             <div className="items">
@@ -17,6 +16,10 @@ function WasteItems({prop, toggleDeleteWaste, handleUpdate}){
                     <tr>
                         <td><h3>MATERIAL</h3></td>
                         <td><h3>: {prop.material}</h3></td>
+                    </tr>
+                     <tr>
+                        <td><h3>LINK</h3></td>
+                        <td><h3>: {prop.link}</h3></td>
                     </tr>
                     <tr>
                         <td><h3>RECYCLABLE</h3></td>

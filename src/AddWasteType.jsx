@@ -4,6 +4,7 @@ function AddWasteType(){
     const[item, setItem] = useState('');
     const[material, setMaterial] = useState('');
     const[link, setLink] = useState('');
+    const[links, setLinks] = useState(null);
     const[instructions, setInstructions] = useState('');
     const[recyclable, setRecyclable] = useState(true);
     const[isPending, setIsPending] = useState(false);
@@ -30,7 +31,10 @@ function AddWasteType(){
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        const wasteType = {instructions, item, link, material, recyclable}
+        if(link.length != 0){
+            setLinks([link])
+        }
+        const wasteType = {instructions, item, links, material, recyclable}
         setIsPending(true)
         fetch('http://localhost:8080/waste-type', {
             method: 'POST',
