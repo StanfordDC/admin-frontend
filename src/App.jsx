@@ -24,13 +24,12 @@ function App() {
     <div className='grid-container'>
       <BrowserRouter>
         <Routes>
-          <Route ></Route>
+          <Route index element={<Home showCard={showCard} listWasteTypes={listWasteTypes}/>}></Route>
           <Route path="/responses" element={<WasteTypeResponse/>}></Route>
         </Routes>
       </BrowserRouter>
       <Header OpenSidebar={OpenSidebar}/>
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} toggleCard={toggleCard} toggleWasteTypes={toggleWasteTypes}/>
-      <Home showCard={showCard} listWasteTypes={listWasteTypes}/>
     </div>
   )
 }
