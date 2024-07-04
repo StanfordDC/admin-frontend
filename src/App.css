@@ -10,6 +10,30 @@ body.active-modal {
   overflow-y: hidden;
 }
 
+.product {
+  height: 65px;
+}
+
+.product > img {
+  height: 100%;
+  width: 95px;
+  float: left;
+}
+
+.product > div {
+  vertical-align: top;
+  line-height: 65px;
+  font-size: 1.2rem;
+  float: left;
+}
+
+.product > div.price {
+  padding-left: 100px;
+  float: right;
+  font-size: 1.5rem;
+}
+
+
 .btn-modal {
   padding: 10px 20px;
   display: block;

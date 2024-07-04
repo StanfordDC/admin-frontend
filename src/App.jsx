@@ -4,7 +4,7 @@ import Header from './Header'
 import Sidebar from './Sidebar'
 import Home from './Home'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import WasteTypeResponse from './pages/WasteTypeResponse'
+import ListAllResponses from './pages/ListAllResponses'
 
 function App() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
@@ -25,7 +25,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home showCard={showCard} listWasteTypes={listWasteTypes}/>}></Route>
-          <Route path="/responses" element={<WasteTypeResponse/>}></Route>
+          <Route path="/responses" element={<ListAllResponses/>}></Route>
         </Routes>
       </BrowserRouter>
       <Header OpenSidebar={OpenSidebar}/>

@@ -1,15 +1,20 @@
 import React from 'react'
 import 
-{ BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill}
+{ BsFillArchiveFill, BsFillGrid3X3GapFill, BsCheck, BsX}
  from 'react-icons/bs'
  import 
  { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } 
- from 'recharts';
- import AddWasteType from './AddWasteType'
+from 'recharts';
+import AddWasteType from './AddWasteType'
 import SearchWasteType from './SearchWasteType';
+import { useNavigate  } from 'react-router-dom';
 
 function Home({showCard, listWasteTypes}) {
-    
+
+  const navigate = useNavigate();
+  const navigateToResponses = () => {
+    navigate('/responses'); // Navigate to '/responses' route
+  };
     const data = [
         {
           name: 'Page A',
@@ -70,24 +75,22 @@ function Home({showCard, listWasteTypes}) {
                 </div>
                 <h1>4</h1>
             </div>
-            <div className='card'>
+            <div className='card' onClick={navigateToResponses}>
                 <div className='card-inner'>
-                    <h3>WASTE TYPES</h3>
+                    <h3>ALL RESPONSE</h3>
                     <BsFillGrid3X3GapFill className='card_icon'/>
                 </div>
                 <h1>4</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3>ACCURACY</h3>
-                    <BsPeopleFill className='card_icon'/>
+                    <h3>GOOD RESPONSES</h3>
                 </div>
                 <h1>2</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3>ERROR RATE</h3>
-                    <BsFillBellFill className='card_icon'/>
+                    <h3>BAD RESPONSES</h3>
                 </div>
                 <h1>2</h1>
             </div>
