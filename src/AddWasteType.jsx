@@ -4,7 +4,6 @@ function AddWasteType(){
     const[item, setItem] = useState('');
     const[material, setMaterial] = useState('');
     const[link, setLink] = useState('');
-    const[links, setLinks] = useState(null);
     const[instructions, setInstructions] = useState('');
     const[recyclable, setRecyclable] = useState(true);
     const[isPending, setIsPending] = useState(false);
@@ -31,8 +30,11 @@ function AddWasteType(){
 
     const handleSubmit = (e) =>{
         e.preventDefault()
+        let links = []
         if(link.length != 0){
-            setLinks([link])
+            links.push(link)
+        } else{
+            links = null
         }
         const wasteType = {instructions, item, links, material, recyclable}
         setIsPending(true)
