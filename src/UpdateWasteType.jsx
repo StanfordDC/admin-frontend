@@ -3,7 +3,7 @@ import { useState } from 'react'
 function UpdateWasteType({prop}){
     const[item, setItem] = useState(prop.item);
     const[material, setMaterial] = useState(prop.material);
-    const[link, setLink] = useState(prop.link);
+    const[link, setLink] = useState(prop.links == null ? '' : prop.links[0]);
     const[instructions, setInstructions] = useState(prop.instructions);
     const[recyclable, setRecyclable] = useState(prop.recyclable);
     const[isPending, setIsPending] = useState(false);
@@ -31,7 +31,13 @@ function UpdateWasteType({prop}){
     const handleSubmit = (e) =>{
         e.preventDefault()
         const id = prop.id
-        const wasteType = {id, instructions, item, link, material, recyclable}
+        let links = []
+        if(link.length != 0){
+            links.push(link)
+        } else{
+            links = null
+        }
+        const wasteType = {id, instructions, item, links, material, recyclable}
         setIsPending(true)
         fetch('http://localhost:8080/waste-type', {
             method: 'PUT',
