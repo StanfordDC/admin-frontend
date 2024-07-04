@@ -3,6 +3,8 @@ import './App.css'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Home from './Home'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import WasteTypeResponse from './pages/WasteTypeResponse'
 
 function App() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
@@ -20,6 +22,12 @@ function App() {
 
   return (
     <div className='grid-container'>
+      <BrowserRouter>
+        <Routes>
+          <Route ></Route>
+          <Route path="/responses" element={<WasteTypeResponse/>}></Route>
+        </Routes>
+      </BrowserRouter>
       <Header OpenSidebar={OpenSidebar}/>
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} toggleCard={toggleCard} toggleWasteTypes={toggleWasteTypes}/>
       <Home showCard={showCard} listWasteTypes={listWasteTypes}/>

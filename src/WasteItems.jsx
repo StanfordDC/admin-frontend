@@ -19,7 +19,7 @@ function WasteItems({prop, toggleDeleteWaste, handleUpdate}){
                     </tr>
                      <tr>
                         <td><h3>LINK</h3></td>
-                        <td><h3>: {prop.links == null ? '' : prop.links[0]}</h3></td>
+                        <td><h3>: {prop.links == null ? '-' : prop.links[0]}</h3></td>
                     </tr>
                     <tr>
                         <td><h3>RECYCLABLE</h3></td>
