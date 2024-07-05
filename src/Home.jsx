@@ -5,12 +5,23 @@ import
  import 
  { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } 
 from 'recharts';
+import { useEffect, useState } from "react";
 import AddWasteType from './AddWasteType'
 import SearchWasteType from './SearchWasteType';
 import { useNavigate  } from 'react-router-dom';
 
 function Home({showCard, listWasteTypes}) {
 
+  const [metrics, setMetrics] = useState(null)
+  useEffect(() => {
+      fetch('http://localhost:8080/responses/metrics')
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          setMetrics(data);
+        })
+    }, [])
   const navigate = useNavigate();
   const navigateToResponses = () => {
     navigate('/responses'); // Navigate to '/responses' route
@@ -70,29 +81,27 @@ function Home({showCard, listWasteTypes}) {
         <div className='main-cards'>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3>APP USAGES</h3>
-                    <BsFillArchiveFill className='card_icon'/>
+                    <h3>FEATURE USAGES</h3>
                 </div>
-                <h1>4</h1>
+                <h1>{metrics != null ? metrics.feature : 0}</h1>
             </div>
             <div className='card' onClick={navigateToResponses}>
                 <div className='card-inner'>
-                    <h3>ALL RESPONSE</h3>
-                    <BsFillGrid3X3GapFill className='card_icon'/>
+                    <h3>ALL RESPONSES</h3>
                 </div>
-                <h1>4</h1>
+                <h1>{metrics != null ? metrics.count : 0}</h1>
             </div>
             <div className='card' onClick={navigateToResponses}>
                 <div className='card-inner'>
                     <h3>GOOD RESPONSES</h3>
                 </div>
-                <h1>2</h1>
+                <h1>{metrics != null ? metrics.goodResponse : 0}</h1>
             </div>
             <div className='card' onClick={navigateToResponses}>
                 <div className='card-inner'>
                     <h3>BAD RESPONSES</h3>
                 </div>
-                <h1>2</h1>
+                <h1>{metrics != null ? metrics.badResponse : 0}</h1>
             </div>
         </div>
 

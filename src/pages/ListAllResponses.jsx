@@ -3,7 +3,7 @@ import WasteTypeResponse from "../components/WasteTypeResponse";
 function ListAllResponses(){
     const [responses, setResponses] = useState(null)
     useEffect(() => {
-        fetch('http://localhost:8080/waste-type-response')
+        fetch('http://localhost:8080/responses')
           .then(res => {
             return res.json();
           })
