@@ -55,16 +55,16 @@ function Home({showCard, listWasteTypes}) {
     
     return monthsData.map(month => ({
       name: monthNames[month.month - 1].short, // Adjust index to match JavaScript (0-indexed)
-      good: month.good,
-      bad: month.bad,
-      feature: month.feature,
+      "Feature Usages": month.feature,
+      "Good Responses": month.good,
+      "Bad Responses": month.bad,
     }));
   };
      
   return (  showCard ? <AddWasteType/> : listWasteTypes ? <SearchWasteType/> :
     <main className='main-container'>
         <div className='main-title'>
-            <h3>DASHBOARD</h3>
+            <h3>METRICS</h3>
         </div>
 
         <div className='main-cards'>
@@ -93,7 +93,10 @@ function Home({showCard, listWasteTypes}) {
                 <h1>{metrics != null ? metrics.badResponse : 0}</h1>
             </div>
         </div>
-
+        
+        <div className='main-title'>
+            <h3>USAGES CHART</h3>
+        </div>
         <div className='charts'>
           <BarChart
           width={900}
@@ -101,19 +104,19 @@ function Home({showCard, listWasteTypes}) {
             data={history != null ? transformData(history) : null}
             margin={{
               top: 5,
-              right: 30,
+              right: 20,
               left: 20,
               bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3" />
+            <CartesianGrid strokeDasharray="5" />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="good" fill="#8884d8" />
-            <Bar dataKey="bad" fill="#82ca9d" />
-            <Bar dataKey="feature" fill="#ffc658" />
+            <Bar dataKey="Feature Usages" fill="#2962ff" />
+            <Bar dataKey="Good Responses" fill="#2e7d32" />
+            <Bar dataKey="Bad Responses" fill="#d50000" />
           </BarChart>
         </div>
     </main>
