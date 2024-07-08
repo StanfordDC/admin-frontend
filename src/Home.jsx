@@ -52,12 +52,12 @@ function Home({showCard, listWasteTypes}) {
       { full: 'november', short: 'Nov' },
       { full: 'december', short: 'Dec' },
     ];
-  
-    return monthNames.map(month => ({
-      name: month.short,
-      good: monthsData[month.full].good,
-      bad: monthsData[month.full].bad,
-      feature: monthsData[month.full].feature,
+    
+    return monthsData.map(month => ({
+      name: monthNames[month.month - 1].short, // Adjust index to match JavaScript (0-indexed)
+      good: month.good,
+      bad: month.bad,
+      feature: month.feature,
     }));
   };
      
@@ -95,9 +95,10 @@ function Home({showCard, listWasteTypes}) {
         </div>
 
         <div className='charts'>
-        <ResponsiveContainer width="100%" height="100%">
           <BarChart
-            data={history != null ? transformData(history) : data}
+          width={900}
+          height={300}
+            data={history != null ? transformData(history) : null}
             margin={{
               top: 5,
               right: 30,
@@ -105,7 +106,7 @@ function Home({showCard, listWasteTypes}) {
               bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="3" />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
@@ -114,7 +115,6 @@ function Home({showCard, listWasteTypes}) {
             <Bar dataKey="bad" fill="#82ca9d" />
             <Bar dataKey="feature" fill="#ffc658" />
           </BarChart>
-        </ResponsiveContainer>
         </div>
     </main>
   )
