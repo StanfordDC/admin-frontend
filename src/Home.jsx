@@ -1,9 +1,6 @@
 import React from 'react'
-import 
-{ BsFillArchiveFill, BsFillGrid3X3GapFill, BsCheck, BsX}
- from 'react-icons/bs'
  import 
- { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } 
+ { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} 
 from 'recharts';
 import { useEffect, useState } from "react";
 import AddWasteType from './AddWasteType'
@@ -24,7 +21,7 @@ function Home({showCard, listWasteTypes}) {
     }, [])
   const navigate = useNavigate();
   const navigateToResponses = () => {
-    navigate('/responses'); // Navigate to '/responses' route
+    navigate('/responses'); 
   };
   const [history, setHistory] = useState(null)
   useEffect(() => {
