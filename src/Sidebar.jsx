@@ -2,12 +2,15 @@ import React from 'react'
 import {BsFillGrid3X3GapFill, BsListCheck} from 'react-icons/bs'
 import { useNavigate  } from 'react-router-dom';
 
-function Sidebar({openSidebarToggle, OpenSidebar,toggleWasteTypes}) {
+function Sidebar({openSidebarToggle, OpenSidebar}) {
 
     const navigate = useNavigate();
     const navigateToCreate = () => {
       navigate('/create'); 
     };
+    const navigateToSearch = () => {
+        navigate('/search'); 
+      };
     return (
         <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
             <div className='sidebar-title'>
@@ -20,7 +23,7 @@ function Sidebar({openSidebarToggle, OpenSidebar,toggleWasteTypes}) {
                         <BsFillGrid3X3GapFill className='icon'/> Add waste type
                     </a>
                 </li>
-                <li className='sidebar-list-item' onClick={toggleWasteTypes}> 
+                <li className='sidebar-list-item' onClick={navigateToSearch}> 
                     <a href="">
                         <BsListCheck className='icon'/> Search waste type
                     </a>

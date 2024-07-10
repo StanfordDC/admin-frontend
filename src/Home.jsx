@@ -3,8 +3,6 @@ import React from 'react'
  { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} 
 from 'recharts';
 import { useEffect, useState } from "react";
-import AddWasteType from './pages/AddWasteType'
-import SearchWasteType from './SearchWasteType';
 import Header from './Header'
 import Sidebar from './Sidebar'
 import { useNavigate  } from 'react-router-dom';
@@ -12,14 +10,6 @@ import { useNavigate  } from 'react-router-dom';
 function Home() {
 
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
-  const [showCard, setShowCard] = useState(false)
-  const [listWasteTypes, setListWasteTypes] = useState(false)
-  const toggleCard = () => {
-    setShowCard(!showCard)
-  }
-  const toggleWasteTypes = () => {
-    setListWasteTypes(!listWasteTypes)
-  }
   const OpenSidebar = () => {
     setOpenSidebarToggle(!openSidebarToggle)
   }

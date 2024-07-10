@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from 'react'
-import WasteItems from "./WasteItems";
+import WasteItems from "../components/WasteItems";
 import UpdateWasteType from "./UpdateWasteType";
 function SearchWasteType(){
     const[wastetypes, setWastetypes] = useState(null)
