@@ -3,7 +3,7 @@ import React from 'react'
  { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} 
 from 'recharts';
 import { useEffect, useState } from "react";
-import AddWasteType from './AddWasteType'
+import AddWasteType from './pages/AddWasteType'
 import SearchWasteType from './SearchWasteType';
 import Header from './Header'
 import Sidebar from './Sidebar'
@@ -76,7 +76,7 @@ function Home() {
   return (  
     <main className='grid-container'>
       <Header OpenSidebar={OpenSidebar}/>
-      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} toggleCard={toggleCard} toggleWasteTypes={toggleWasteTypes}/>
+      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
       <div className='main-container'>
         <div className='main-title'>
               <h3>METRICS</h3>
