@@ -10,7 +10,10 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
     };
     const navigateToSearch = () => {
         navigate('/search'); 
-      };
+    };
+    const navigateToHome = () => {
+        navigate('/'); 
+    };
     return (
         <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
             <div className='sidebar-title'>
@@ -18,6 +21,11 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
             </div>
 
             <ul className='sidebar-list'>
+                <li className='sidebar-list-item' onClick={navigateToHome}>
+                    <a href="">
+                        <BsFillGrid3X3GapFill className='icon'/> Home
+                    </a>
+                </li>
                 <li className='sidebar-list-item' onClick={navigateToCreate}>
                     <a href="">
                         <BsFillGrid3X3GapFill className='icon'/> Add waste type
