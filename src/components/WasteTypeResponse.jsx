@@ -15,6 +15,7 @@ function WasteTypeResponse({prop}){
                         {prop.items && prop.items.map(item =>
                             <div className='object'>
                                 <div>{item.item}</div>
+                                <div>{item.source}</div>
                                 <div className="response">
                                     {item.feedback == 0 ? <BsDashCircle /> : item.feedback == 1 ? <BsCheckCircle /> : <BsXCircle />}
                                 </div>
