@@ -3,8 +3,8 @@ import React from 'react'
  { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} 
 from 'recharts';
 import { useEffect, useState } from "react";
-import Header from './Header'
-import Sidebar from './Sidebar'
+import Header from './components/Header'
+import Sidebar from './components/Sidebar'
 import { useNavigate  } from 'react-router-dom';
 
 function Home() {

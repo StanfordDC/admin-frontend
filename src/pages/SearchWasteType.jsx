@@ -2,7 +2,14 @@ import React, { useEffect } from "react";
 import { useState } from 'react'
 import WasteItems from "../components/WasteItems";
 import UpdateWasteType from "./UpdateWasteType";
+import Header from '../components/Header'
+import Sidebar from '../components/Sidebar'
 function SearchWasteType(){
+    const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
+    const OpenSidebar = () => {
+      setOpenSidebarToggle(!openSidebarToggle)
+    }
+
     const[wastetypes, setWastetypes] = useState(null)
     const[listAll, setListAll] = useState(true)
     const[itemName, setItemName] = useState("")
@@ -65,8 +72,11 @@ function SearchWasteType(){
       }, [deletedItem])
 
     return(     update ? <UpdateWasteType prop={wastetype}/> : 
-    <main className='main-container'>
-       {deleteWaste && (
+    <main className='grid-container'>
+      <Header OpenSidebar={OpenSidebar}/>
+      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
+      <div className="main-container">
+      {deleteWaste && (
             <div className="modal">
               <div className="overlay"></div>
               <div className="modal-content">
@@ -98,6 +108,7 @@ function SearchWasteType(){
          toggleDeleteWaste={toggleDeleteWaste} handleUpdate={handleUpdate}/></li>)}</ul>}
         {!listAll && wastetype && <ul className="list-item"><li><WasteItems prop={wastetype} 
         toggleDeleteWaste={toggleDeleteWaste} handleUpdate={handleUpdate}/></li></ul>}
+      </div>
     </main>
     )
 }
