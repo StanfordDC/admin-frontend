@@ -10,16 +10,16 @@ function WasteTypeResponse({prop}){
                         alt="Waste Type"
                         style={{ maxWidth: '30%', height: 'auto', marginRight: '20px' }}
                     />
-                    <div className="object-details">
+                   <div className="object-details">
                         <h2>Detected Objects</h2>
-                        {Object.entries(prop.objects).map(([item, count]) => (
-                            <div className="object" key={item}>
-                                <div>{item}</div>
+                        {prop.items && prop.items.map(item =>
+                            <div className='object'>
+                                <div>{item.item}</div>
                                 <div className="response">
-                                    {count === 0 ? <BsDashCircle /> : count === 1 ? <BsCheckCircle /> : <BsXCircle />}
+                                    {item.feedback == 0 ? <BsDashCircle /> : item.feedback == 1 ? <BsCheckCircle /> : <BsXCircle />}
                                 </div>
                             </div>
-                        ))}
+                        )}
                     </div>
                 </div>
             </div>
