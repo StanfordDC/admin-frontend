@@ -5,9 +5,24 @@ from 'recharts';
 import { useEffect, useState } from "react";
 import AddWasteType from './AddWasteType'
 import SearchWasteType from './SearchWasteType';
+import Header from './Header'
+import Sidebar from './Sidebar'
 import { useNavigate  } from 'react-router-dom';
 
-function Home({showCard, listWasteTypes}) {
+function Home() {
+
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
+  const [showCard, setShowCard] = useState(false)
+  const [listWasteTypes, setListWasteTypes] = useState(false)
+  const toggleCard = () => {
+    setShowCard(!showCard)
+  }
+  const toggleWasteTypes = () => {
+    setListWasteTypes(!listWasteTypes)
+  }
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle)
+  }
 
   const [metrics, setMetrics] = useState(null)
   useEffect(() => {
@@ -58,64 +73,68 @@ function Home({showCard, listWasteTypes}) {
     }));
   };
      
-  return (  showCard ? <AddWasteType/> : listWasteTypes ? <SearchWasteType/> :
-    <main className='main-container'>
+  return (  
+    <main className='grid-container'>
+      <Header OpenSidebar={OpenSidebar}/>
+      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} toggleCard={toggleCard} toggleWasteTypes={toggleWasteTypes}/>
+      <div className='main-container'>
         <div className='main-title'>
-            <h3>METRICS</h3>
-        </div>
+              <h3>METRICS</h3>
+          </div>
 
-        <div className='main-cards'>
-            <div className='card'>
-                <div className='card-inner'>
-                    <h3>FEATURE USAGES</h3>
-                </div>
-                <h1>{metrics != null ? metrics.feature : 0}</h1>
-            </div>
-            <div className='card' onClick={navigateToResponses}>
-                <div className='card-inner'>
-                    <h3>ALL RESPONSES</h3>
-                </div>
-                <h1>{metrics != null ? metrics.count : 0}</h1>
-            </div>
-            <div className='card' onClick={navigateToResponses}>
-                <div className='card-inner'>
-                    <h3>GOOD RESPONSES</h3>
-                </div>
-                <h1>{metrics != null ? metrics.goodResponse : 0}</h1>
-            </div>
-            <div className='card' onClick={navigateToResponses}>
-                <div className='card-inner'>
-                    <h3>BAD RESPONSES</h3>
-                </div>
-                <h1>{metrics != null ? metrics.badResponse : 0}</h1>
-            </div>
-        </div>
-        
-        <div className='main-title'>
-            <h3>USAGES CHART</h3>
-        </div>
-        <div className='charts'>
-          <BarChart
-          width={900}
-          height={300}
-            data={history != null ? transformData(history) : null}
-            margin={{
-              top: 5,
-              right: 20,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="5" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="Feature Usages" fill="#2962ff" />
-            <Bar dataKey="Good Responses" fill="#2e7d32" />
-            <Bar dataKey="Bad Responses" fill="#d50000" />
-          </BarChart>
-        </div>
+          <div className='main-cards'>
+              <div className='card'>
+                  <div className='card-inner'>
+                      <h3>FEATURE USAGES</h3>
+                  </div>
+                  <h1>{metrics != null ? metrics.feature : 0}</h1>
+              </div>
+              <div className='card' onClick={navigateToResponses}>
+                  <div className='card-inner'>
+                      <h3>ALL RESPONSES</h3>
+                  </div>
+                  <h1>{metrics != null ? metrics.count : 0}</h1>
+              </div>
+              <div className='card' onClick={navigateToResponses}>
+                  <div className='card-inner'>
+                      <h3>GOOD RESPONSES</h3>
+                  </div>
+                  <h1>{metrics != null ? metrics.goodResponse : 0}</h1>
+              </div>
+              <div className='card' onClick={navigateToResponses}>
+                  <div className='card-inner'>
+                      <h3>BAD RESPONSES</h3>
+                  </div>
+                  <h1>{metrics != null ? metrics.badResponse : 0}</h1>
+              </div>
+          </div>
+          
+          <div className='main-title'>
+              <h3>USAGES CHART</h3>
+          </div>
+          <div className='charts'>
+            <BarChart
+            width={900}
+            height={300}
+              data={history != null ? transformData(history) : null}
+              margin={{
+                top: 5,
+                right: 20,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="5" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="Feature Usages" fill="#2962ff" />
+              <Bar dataKey="Good Responses" fill="#2e7d32" />
+              <Bar dataKey="Bad Responses" fill="#d50000" />
+            </BarChart>
+          </div>
+      </div>
     </main>
   )
 }
