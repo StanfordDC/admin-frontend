@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
+import UpdateConfirmation from "../components/UpdateConfirmation";
 function UpdateWasteType({prop}){
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
     const OpenSidebar = () => {
@@ -12,7 +13,7 @@ function UpdateWasteType({prop}){
     const[link, setLink] = useState(prop.links == null ? '' : prop.links[0]);
     const[instructions, setInstructions] = useState(prop.instructions);
     const[isRecyclable, setIsrecyclable] = useState(prop.recyclable);
-    const[isPending, setIsPending] = useState(false);
+    const[isUpdated, setIsUpdated] = useState(false);
 
     function handleMaterialChange(event){
         setMaterial(event.target.value)
@@ -45,17 +46,17 @@ function UpdateWasteType({prop}){
         }
         let recyclable = isRecyclable == "true"
         const wasteType = {id, instructions, item, links, material, recyclable}
-        setIsPending(true)
         fetch('http://localhost:8080/waste-type', {
             method: 'PUT',
             body: JSON.stringify(wasteType)
-        }).then(() => {setIsPending(false);
+        }).then(() => {setIsUpdated(true);
         })
     }
 
     return(
         <form action="" onSubmit={handleSubmit}>
              <main className='grid-container'>
+                {isUpdated && <UpdateConfirmation/>}
                 <Header OpenSidebar={OpenSidebar}/>
                 <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
                 <div className="main-container">
@@ -86,8 +87,7 @@ function UpdateWasteType({prop}){
                         <option value="false">No</option>
                     </select>
                     <br /><br />
-                    {!isPending && <button className="add-button">UPDATE</button>}
-                    {isPending && <button className="add-button" disabled>WASTE TYPE UPDATED</button>}
+                    <button className="add-button">UPDATE</button>
                 </div>
             </main>
         </form>
