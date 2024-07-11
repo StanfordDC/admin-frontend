@@ -1,7 +1,9 @@
 import React from 'react'
 import {BsFillGrid3X3GapFill, BsListCheck} from 'react-icons/bs'
 import { useNavigate  } from 'react-router-dom';
-
+import { Home } from '@mui/icons-material';
+import AddIcon from '@mui/icons-material/Add';
+import SearchIcon from '@mui/icons-material/Search';
 function Sidebar({openSidebarToggle, OpenSidebar}) {
 
     const navigate = useNavigate();
@@ -23,17 +25,17 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
             <ul className='sidebar-list'>
                 <li className='sidebar-list-item' onClick={navigateToHome}>
                     <a href="">
-                        <BsFillGrid3X3GapFill className='icon'/> Home
+                        <Home className='icon'/> Home
                     </a>
                 </li>
                 <li className='sidebar-list-item' onClick={navigateToCreate}>
                     <a href="">
-                        <BsFillGrid3X3GapFill className='icon'/> Add waste type
+                        <AddIcon className='icon'/> Add waste type
                     </a>
                 </li>
                 <li className='sidebar-list-item' onClick={navigateToSearch}> 
                     <a href="">
-                        <BsListCheck className='icon'/> Search waste type
+                        <SearchIcon className='icon'/> Search waste type
                     </a>
                 </li>
             </ul>
