@@ -11,7 +11,7 @@ function UpdateWasteType({prop}){
     const[material, setMaterial] = useState(prop.material);
     const[link, setLink] = useState(prop.links == null ? '' : prop.links[0]);
     const[instructions, setInstructions] = useState(prop.instructions);
-    const[recyclable, setRecyclable] = useState(prop.recyclable);
+    const[isRecyclable, setIsrecyclable] = useState(prop.recyclable);
     const[isPending, setIsPending] = useState(false);
 
     function handleMaterialChange(event){
@@ -31,7 +31,7 @@ function UpdateWasteType({prop}){
     }
 
     function handleRecyclableChange(event){
-        setRecyclable(event.target.value)
+        setIsrecyclable(event.target.value)
     }
 
     const handleSubmit = (e) =>{
@@ -43,6 +43,7 @@ function UpdateWasteType({prop}){
         } else{
             links = null
         }
+        let recyclable = isRecyclable == "true"
         const wasteType = {id, instructions, item, links, material, recyclable}
         setIsPending(true)
         fetch('http://localhost:8080/waste-type', {
@@ -80,7 +81,7 @@ function UpdateWasteType({prop}){
                     <div className='main-title'>
                         <h3>RECYCLABLE</h3>
                     </div>
-                    <select name="recyclable" id="" value={recyclable} onChange={handleRecyclableChange}>
+                    <select name="recyclable" id="" value={isRecyclable} onChange={handleRecyclableChange}>
                         <option value="true" selected>Yes</option>
                         <option value="false">No</option>
                     </select>
