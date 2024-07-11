@@ -4,7 +4,6 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import ListAllResponses from './pages/ListAllResponses'
 import AddWasteType from './pages/AddWasteType'
 import SearchWasteType from './pages/SearchWasteType'
-import UpdateWasteType from './pages/UpdateWasteType'
 
 function App() {
 
