@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
+import AddConfirmation from '../components/AddConfirmation'
 function AddWasteType(){
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
     const OpenSidebar = () => {
@@ -13,7 +14,7 @@ function AddWasteType(){
     const[link, setLink] = useState('');
     const[instructions, setInstructions] = useState('');
     const[recyclable, setRecyclable] = useState(true);
-    const[isPending, setIsPending] = useState(false);
+    const[isAdded, setIsAdded] = useState(false);
 
     function handleMaterialChange(event){
         setMaterial(event.target.value)
@@ -44,17 +45,26 @@ function AddWasteType(){
             links = null
         }
         const wasteType = {instructions, item, links, material, recyclable}
-        setIsPending(true)
         fetch('http://localhost:8080/waste-type', {
             method: 'POST',
             body: JSON.stringify(wasteType)
-        }).then(() => {setIsPending(false);
+        }).then(() => {setIsAdded(true);
         })
     }
+
+    const resetForm = () => {
+        setItem('');
+        setMaterial('');
+        setLink('');
+        setInstructions('');
+        setRecyclable(true);
+        setIsAdded(false);
+    };
 
     return(
         <form action="" onSubmit={handleSubmit}>
             <main className='grid-container'>
+                {isAdded && <AddConfirmation resetForm={resetForm}/>}
                 <Header OpenSidebar={OpenSidebar}/>
                 <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
                 <div className="main-container">
@@ -85,8 +95,7 @@ function AddWasteType(){
                         <option value="false">No</option>
                     </select>
                     <br /><br />
-                    {!isPending && <button className="add-button">CONFIRM</button>}
-                    {isPending && <button className="add-button" disabled>NEW WASTE TYPE ADDED</button>}
+                    <button className="add-button">CONFIRM</button>
                 </div>
         </main>
         </form>
