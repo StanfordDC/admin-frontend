@@ -1,8 +1,16 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './Login.css'
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showError, setShowError] = useState(false);
+
+    const navigate = useNavigate();
+
+    function toggleShowError(){
+        setShowError(true)
+    }
 
     function handleUsernameChange(event) {
         setUsername(event.target.value);
@@ -12,15 +20,30 @@ function Login() {
         setPassword(event.target.value);
     }
 
-    const handleSubmit = (e) =>{
-        e.preventDefault()
-        const user = {username, password}
-        fetch('http://localhost:8080/user/login', {
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify(user)
-        })
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const user = { username, password };
+        
+        try {
+            const response = await fetch('http://localhost:8080/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                sessionStorage.setItem('token', data.token);
+                navigate('/');  // Redirect to home page
+            } else {
+                toggleShowError();
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
     return (
         <div className="login-container">
@@ -39,6 +62,7 @@ function Login() {
                     onChange={handlePasswordChange} 
                 />
                 <button type="submit">Login</button>
+                {showError && <h3>Invalid username or password</h3>}
             </form>
         </div>
     );
