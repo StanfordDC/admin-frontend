@@ -5,16 +5,25 @@ import ListAllResponses from './pages/ListAllResponses'
 import AddWasteType from './pages/AddWasteType'
 import SearchWasteType from './pages/SearchWasteType'
 import Login from './pages/Login'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 
   return (
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home/>}></Route>
-          <Route path="/responses" element={<ListAllResponses/>}></Route>
-          <Route path="/create" element={<AddWasteType/>}></Route>
-          <Route path="/search" element={<SearchWasteType/>}></Route>
+          <Route index element={<ProtectedRoute>
+              <Home/>
+            </ProtectedRoute>}></Route>
+          <Route path="/responses" element={<ProtectedRoute>
+              <ListAllResponses />
+            </ProtectedRoute>}></Route>
+          <Route path="/create" element={<ProtectedRoute>
+            <AddWasteType/>
+            </ProtectedRoute>}></Route>
+          <Route path="/search" element={<ProtectedRoute>
+              <SearchWasteType />
+            </ProtectedRoute>}></Route>
           <Route path="/login" element={<Login/>}></Route>
         </Routes>
       </BrowserRouter>
