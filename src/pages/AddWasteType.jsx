@@ -45,7 +45,7 @@ function AddWasteType(){
             links = null
         }
         const wasteType = {instructions, item, links, material, recyclable}
-        fetch('http://localhost:8080/waste-type', {
+        fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/waste-type', {
             method: 'POST',
             body: JSON.stringify(wasteType)
         }).then(() => {setIsAdded(true);

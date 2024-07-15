@@ -16,7 +16,7 @@ function Home() {
 
   const [metrics, setMetrics] = useState(null)
   useEffect(() => {
-      fetch('http://localhost:8080/responses/metrics')
+      fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses/metrics')
         .then(res => {
           return res.json();
         })
@@ -30,7 +30,7 @@ function Home() {
   };
   const [history, setHistory] = useState(null)
   useEffect(() => {
-    fetch('http://localhost:8080/responses/history')
+    fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses/history')
       .then(res => {
         return res.json();
       })

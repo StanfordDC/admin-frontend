@@ -46,7 +46,7 @@ function UpdateWasteType({prop}){
         }
         let recyclable = isRecyclable == "true"
         const wasteType = {id, instructions, item, links, material, recyclable}
-        fetch('http://localhost:8080/waste-type', {
+        fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/waste-type', {
             method: 'PUT',
             body: JSON.stringify(wasteType)
         }).then(() => {setIsUpdated(true);

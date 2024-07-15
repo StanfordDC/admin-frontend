@@ -9,7 +9,7 @@ function ListAllResponses(){
     }
     const [responses, setResponses] = useState(null)
     useEffect(() => {
-        fetch('http://localhost:8080/responses')
+        fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses')
           .then(res => {
             return res.json();
           })

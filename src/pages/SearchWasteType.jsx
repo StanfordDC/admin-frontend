@@ -33,7 +33,7 @@ function SearchWasteType(){
     }
 
     const handleDelete = () =>{
-      fetch('http://localhost:8080/waste-type/'+itemName,{
+      fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/waste-type/'+itemName,{
         method: 'DELETE'
       }).then(res =>{
         setWastetype(null)
@@ -48,7 +48,7 @@ function SearchWasteType(){
     const handleSubmit = (e) =>{
         e.preventDefault()
         setListAll(false)
-        fetch('http://localhost:8080/waste-type/'+itemName)
+        fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/waste-type/'+itemName)
           .then(res => {
             if (res.status === 404) {
               setWastetype(null);
@@ -62,7 +62,7 @@ function SearchWasteType(){
     }
 
     useEffect(() => {
-        fetch('http://localhost:8080/waste-type')
+        fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/waste-type')
           .then(res => {
             return res.json();
           })
