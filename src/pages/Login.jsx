@@ -62,7 +62,7 @@ function Login() {
                     onChange={handlePasswordChange} 
                 />
                 <button type="submit">Login</button>
-                {showError && <h3>Invalid username or password</h3>}
+                {showError && <p>Invalid username or password</p>}
             </form>
         </div>
     );
