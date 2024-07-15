@@ -75,25 +75,25 @@ function Home() {
           <div className='main-cards'>
               <div className='card'>
                   <div className='card-inner'>
-                      <h3>FEATURE USAGES</h3>
+                      <h3>APP USAGES</h3>
                   </div>
                   <h1>{metrics != null ? metrics.feature : 0}</h1>
               </div>
               <div className='card' onClick={navigateToResponses}>
                   <div className='card-inner'>
-                      <h3>ALL RESPONSES</h3>
+                      <h3>DETECTED ITEMS</h3>
                   </div>
                   <h1>{metrics != null ? metrics.count : 0}</h1>
               </div>
               <div className='card' onClick={navigateToResponses}>
                   <div className='card-inner'>
-                      <h3>GOOD RESPONSES</h3>
+                      <h3>CORRECT IDENTIFICATION</h3>
                   </div>
                   <h1>{metrics != null ? metrics.goodResponse : 0}</h1>
               </div>
               <div className='card' onClick={navigateToResponses}>
                   <div className='card-inner'>
-                      <h3>BAD RESPONSES</h3>
+                      <h3>BAD IDENTIFICATION</h3>
                   </div>
                   <h1>{metrics != null ? metrics.badResponse : 0}</h1>
               </div>
