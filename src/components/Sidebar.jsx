@@ -3,6 +3,7 @@ import { useNavigate  } from 'react-router-dom';
 import { Home } from '@mui/icons-material';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
+import LogoutIcon from '@mui/icons-material/Logout';
 function Sidebar({openSidebarToggle, OpenSidebar}) {
 
     const navigate = useNavigate();
@@ -14,6 +15,10 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
     };
     const navigateToHome = () => {
         navigate('/'); 
+    };
+    const navigateToLogin = () => {
+        sessionStorage.clear(); 
+        navigate('/login'); 
     };
     return (
         <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
@@ -35,6 +40,11 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 <li className='sidebar-list-item' onClick={navigateToSearch}> 
                     <a href="">
                         <SearchIcon className='icon'/> Search waste type
+                    </a>
+                </li>
+                <li className='sidebar-list-item' onClick={navigateToLogin}> 
+                    <a href="">
+                        <LogoutIcon className='icon'/> Logout
                     </a>
                 </li>
             </ul>
