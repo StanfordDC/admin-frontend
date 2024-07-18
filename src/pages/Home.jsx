@@ -135,7 +135,7 @@ function Home() {
           <div className='main-title'>
               <h3>USAGES CHART</h3>
           </div>
-          <div>
+          <div className='toggle-buttons'>
             <button
               className={`display-button ${selectedButton === 'default' ? 'selected' : ''}`}
               onClick={displayAll}>
