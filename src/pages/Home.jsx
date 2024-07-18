@@ -13,7 +13,13 @@ function Home() {
   const OpenSidebar = () => {
     setOpenSidebarToggle(!openSidebarToggle)
   }
-
+  const [year, setYear] = useState('');
+  const handleYearChange = (event) => {
+    setYear(event.target.value);
+  };
+  const applyFilter = () => {
+    console.log(`Applying filter for year: ${year}`);
+  };
   const [metrics, setMetrics] = useState(null)
   useEffect(() => {
       fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses/metrics')
@@ -156,6 +162,15 @@ function Home() {
               onClick={displayBadResponses}>
               BAD IDENTIFICATION
             </button>
+          </div>
+          <div className='filter-container'>
+            <select  className='year-dropdown' value={year} onChange={handleYearChange}>
+              <option value="" disabled>CHOOSE YEAR</option>
+              {[...Array(new Date().getFullYear() - 2023).keys()].map(i => (
+                <option key={2024 + i} value={2024 + i}>{2024 + i}</option>
+              ))}
+            </select>
+            <button className='apply-filter-button' onClick={applyFilter}>APPLY FILTER</button>
           </div>
           <div className='charts'>
             <BarChart

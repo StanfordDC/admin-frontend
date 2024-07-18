@@ -108,10 +108,41 @@ body.active-modal {
 
 .toggle-buttons {
   display: flex;
+  padding-bottom: 20px;
 }
 
 .display-button.selected {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.year-dropdown {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size:0.8rem;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.apply-filter-button {
+  padding: 10px 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.apply-filter-button:hover{
+  background-color: #4a96e7;
 }
 
 .add-button{
