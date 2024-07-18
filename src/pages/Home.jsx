@@ -57,12 +57,45 @@ function Home() {
     
     return monthsData.map(month => ({
       name: monthNames[month.month - 1].short, // Adjust index to match JavaScript (0-indexed)
-      "Feature Usages": month.feature,
-      "Good Responses": month.good,
-      "Bad Responses": month.bad,
+      "App Usages": month.feature,
+      "Correct Identification": month.good,
+      "Bad Identification": month.bad,
     }));
   };
-     
+  
+  const [showFeatureUsages, setShowFeatureUsages] = useState(true);
+  const [showGoodResponses, setShowGoodResponses] = useState(true);
+  const [showBadResponses, setShowBadResponses] = useState(true);
+  const [selectedButton, setSelectedButton] = useState('default');
+
+  const displayAll =()=> {
+    setShowBadResponses(true);
+    setShowFeatureUsages(true);
+    setShowGoodResponses(true);
+    setSelectedButton('default');
+  }
+
+  const displayBadResponses =()=>{
+    setShowBadResponses(true);
+    setShowFeatureUsages(false);
+    setShowGoodResponses(false);
+    setSelectedButton('badResponses');
+  }
+
+  const displayGoodResponses =()=>{
+    setShowBadResponses(false);
+    setShowFeatureUsages(false);
+    setShowGoodResponses(true);
+    setSelectedButton('goodResponses');
+  }
+
+  const displayFeatureUsages =()=>{
+    setShowBadResponses(false);
+    setShowFeatureUsages(true);
+    setShowGoodResponses(false);
+    setSelectedButton('featureUsages');
+  }
+
   return (  
     <main className='grid-container'>
       <Header OpenSidebar={OpenSidebar}/>
@@ -102,6 +135,28 @@ function Home() {
           <div className='main-title'>
               <h3>USAGES CHART</h3>
           </div>
+          <div>
+            <button
+              className={`display-button ${selectedButton === 'default' ? 'selected' : ''}`}
+              onClick={displayAll}>
+              DEFAULT
+            </button>
+            <button
+              className={`display-button ${selectedButton === 'featureUsages' ? 'selected' : ''}`}
+              onClick={displayFeatureUsages}>
+              APP USAGES
+            </button>
+            <button
+              className={`display-button ${selectedButton === 'goodResponses' ? 'selected' : ''}`}
+              onClick={displayGoodResponses}>
+              CORRECT IDENTIFICATION
+            </button>
+            <button
+              className={`display-button ${selectedButton === 'badResponses' ? 'selected' : ''}`}
+              onClick={displayBadResponses}>
+              BAD IDENTIFICATION
+            </button>
+          </div>
           <div className='charts'>
             <BarChart
             width={900}
@@ -119,9 +174,9 @@ function Home() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="Feature Usages" fill="#2962ff" />
-              <Bar dataKey="Good Responses" fill="#2e7d32" />
-              <Bar dataKey="Bad Responses" fill="#d50000" />
+              {showFeatureUsages && <Bar dataKey="App Usages" fill="#2962ff" />}
+              {showGoodResponses && <Bar dataKey="Correct Identification" fill="#2e7d32" />}
+              {showBadResponses && <Bar dataKey="Bad Identification" fill="#d50000" />}
             </BarChart>
           </div>
       </div>
