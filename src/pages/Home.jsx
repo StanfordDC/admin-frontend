@@ -18,7 +18,15 @@ function Home() {
     setYear(event.target.value);
   };
   const applyFilter = () => {
-    console.log(`Applying filter for year: ${year}`);
+    if(year){
+      fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses/history/'+year)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setHistory(data);
+      })
+    }
   };
   const [metrics, setMetrics] = useState(null)
   useEffect(() => {
@@ -36,7 +44,8 @@ function Home() {
   };
   const [history, setHistory] = useState(null)
   useEffect(() => {
-    fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses/history')
+    const currentYear = new Date().getFullYear();
+    fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses/history/'+currentYear)
       .then(res => {
         return res.json();
       })
