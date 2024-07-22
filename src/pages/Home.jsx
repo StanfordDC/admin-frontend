@@ -96,42 +96,54 @@ function Home() {
     setSelectedButton(true);
   }
 
-  const displayBadResponses =()=>{
-    if(selectedButton){
-      setSelectedBad(true)
-      setShowBadResponses(true)
-      setSelectedButton(false)
-      setShowFeatureUsages(false)
-      setShowGoodResponses(false)
-    } else{
-      setSelectedBad(!selectedBad);
-      setShowBadResponses(!showBadResponses);
+  const displayBadResponses = () => {
+    if (selectedButton) {
+      setSelectedBad(true);
+      setShowBadResponses(true);
+      setSelectedButton(false);
+      setShowFeatureUsages(false);
+      setShowGoodResponses(false);
+    } else {
+      const newSelectedBad = !selectedBad;
+      setSelectedBad(newSelectedBad);
+      setShowBadResponses(newSelectedBad);
+      if (!newSelectedBad && !selectedGood && !selectedFeature) {
+        displayAll();
+      }
     }
   }
-
-  const displayGoodResponses =()=>{
-    if(selectedButton){
-      setSelectedGood(true)
-      setShowGoodResponses(true)
-      setSelectedButton(false)
-      setShowFeatureUsages(false)
-      setShowBadResponses(false)
-    } else{
-      setSelectedGood(!selectedGood);
-      setShowGoodResponses(!showGoodResponses);
+  
+  const displayGoodResponses = () => {
+    if (selectedButton) {
+      setSelectedGood(true);
+      setShowGoodResponses(true);
+      setSelectedButton(false);
+      setShowFeatureUsages(false);
+      setShowBadResponses(false);
+    } else {
+      const newSelectedGood = !selectedGood;
+      setSelectedGood(newSelectedGood);
+      setShowGoodResponses(newSelectedGood);
+      if (!selectedBad && !newSelectedGood && !selectedFeature) {
+        displayAll();
+      }
     }
   }
-
-  const displayFeatureUsages =()=>{
-    if(selectedButton){
-      setSelectedFeature(true)
-      setShowFeatureUsages(true)
-      setSelectedButton(false)
-      setShowBadResponses(false)
-      setShowGoodResponses(false)
-    } else{
-      setSelectedFeature(!selectedFeature)
-      setShowFeatureUsages(!showFeatureUsages)
+  
+  const displayFeatureUsages = () => {
+    if (selectedButton) {
+      setSelectedFeature(true);
+      setShowFeatureUsages(true);
+      setSelectedButton(false);
+      setShowBadResponses(false);
+      setShowGoodResponses(false);
+    } else {
+      const newSelectedFeature = !selectedFeature;
+      setSelectedFeature(newSelectedFeature);
+      setShowFeatureUsages(newSelectedFeature);
+      if (!selectedBad && !selectedGood && !newSelectedFeature) {
+        displayAll();
+      }
     }
   }
 
