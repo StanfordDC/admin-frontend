@@ -81,34 +81,58 @@ function Home() {
   const [showFeatureUsages, setShowFeatureUsages] = useState(true);
   const [showGoodResponses, setShowGoodResponses] = useState(true);
   const [showBadResponses, setShowBadResponses] = useState(true);
-  const [selectedButton, setSelectedButton] = useState('default');
+  const [selectedButton, setSelectedButton] = useState(true);
+  const [selectedGood, setSelectedGood] = useState(false);
+  const [selectedBad, setSelectedBad] = useState(false);
+  const [selectedFeature, setSelectedFeature] = useState(false)
 
   const displayAll =()=> {
     setShowBadResponses(true);
     setShowFeatureUsages(true);
     setShowGoodResponses(true);
-    setSelectedButton('default');
+    setSelectedBad(false);
+    setSelectedGood(false);
+    setSelectedFeature(false);
+    setSelectedButton(true);
   }
 
   const displayBadResponses =()=>{
-    setShowBadResponses(true);
-    setShowFeatureUsages(false);
-    setShowGoodResponses(false);
-    setSelectedButton('badResponses');
+    if(selectedButton){
+      setSelectedBad(true)
+      setShowBadResponses(true)
+      setSelectedButton(false)
+      setShowFeatureUsages(false)
+      setShowGoodResponses(false)
+    } else{
+      setSelectedBad(!selectedBad);
+      setShowBadResponses(!showBadResponses);
+    }
   }
 
   const displayGoodResponses =()=>{
-    setShowBadResponses(false);
-    setShowFeatureUsages(false);
-    setShowGoodResponses(true);
-    setSelectedButton('goodResponses');
+    if(selectedButton){
+      setSelectedGood(true)
+      setShowGoodResponses(true)
+      setSelectedButton(false)
+      setShowFeatureUsages(false)
+      setShowBadResponses(false)
+    } else{
+      setSelectedGood(!selectedGood);
+      setShowGoodResponses(!showGoodResponses);
+    }
   }
 
   const displayFeatureUsages =()=>{
-    setShowBadResponses(false);
-    setShowFeatureUsages(true);
-    setShowGoodResponses(false);
-    setSelectedButton('featureUsages');
+    if(selectedButton){
+      setSelectedFeature(true)
+      setShowFeatureUsages(true)
+      setSelectedButton(false)
+      setShowBadResponses(false)
+      setShowGoodResponses(false)
+    } else{
+      setSelectedFeature(!selectedFeature)
+      setShowFeatureUsages(!showFeatureUsages)
+    }
   }
 
   return (  
@@ -152,22 +176,22 @@ function Home() {
           </div>
           <div className='toggle-buttons'>
             <button
-              className={`display-button ${selectedButton === 'default' ? 'selected' : ''}`}
+              className={`display-button ${selectedButton ? 'selected' : ''}`}
               onClick={displayAll}>
               DEFAULT
             </button>
             <button
-              className={`display-button ${selectedButton === 'featureUsages' ? 'selected' : ''}`}
+              className={`display-button ${selectedFeature ? 'selected' : ''}`}
               onClick={displayFeatureUsages}>
               APP USAGES
             </button>
             <button
-              className={`display-button ${selectedButton === 'goodResponses' ? 'selected' : ''}`}
+              className={`display-button ${selectedGood ? 'selected' : ''}`}
               onClick={displayGoodResponses}>
               CORRECT IDENTIFICATION
             </button>
             <button
-              className={`display-button ${selectedButton === 'badResponses' ? 'selected' : ''}`}
+              className={`display-button ${selectedBad ? 'selected' : ''}`}
               onClick={displayBadResponses}>
               BAD IDENTIFICATION
             </button>
