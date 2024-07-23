@@ -7,6 +7,7 @@ import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import { useNavigate  } from 'react-router-dom';
 import { METRICS_ENDPOINT, METRICS_HISTORY_ENDPOINT } from '../API/API';
+import InvalidRange from '../components/InvalidRange';
 
 function Home() {
   const fullMonthNames = [
@@ -247,9 +248,7 @@ function Home() {
               {monthOptions}
             </select>
             <button className='apply-filter-button' onClick={applyFilter}>APPLY FILTER</button>
-            <div>
-          {!validRange && <h4  style={{ color: 'red' }}>Invalid Range</h4>}
-          </div>
+            {!validRange && <InvalidRange/>}
           </div>
           <div className='charts'>
             <BarChart
