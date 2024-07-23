@@ -46,19 +46,7 @@ function Home() {
   const [history, setHistory] = useState(null)
   useEffect(() => {
     const currentYear = new Date().getFullYear();
-    const requestBody = {
-      startYear: currentYear,
-      startMonth: 1,
-      endYear: currentYear,
-      endMonth: 12,
-    };
-    fetch(METRICS_HISTORY_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    })
+    fetch(METRICS_HISTORY_ENDPOINT(currentYear,1,currentYear,12))
       .then(res => {
         return res.json();
       })
@@ -68,23 +56,10 @@ function Home() {
   }, [])
 
   const transformData = (monthsData) => {
-    const monthNames = [
-      { full: 'january', short: 'Jan' },
-      { full: 'february', short: 'Feb' },
-      { full: 'march', short: 'Mar' },
-      { full: 'april', short: 'Apr' },
-      { full: 'may', short: 'May' },
-      { full: 'june', short: 'Jun' },
-      { full: 'july', short: 'Jul' },
-      { full: 'august', short: 'Aug' },
-      { full: 'september', short: 'Sep' },
-      { full: 'october', short: 'Oct' },
-      { full: 'november', short: 'Nov' },
-      { full: 'december', short: 'Dec' },
-    ];
+    const monthNames =  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     
     return monthsData.map(month => ({
-      name: monthNames[month.month - 1].short, // Adjust index to match JavaScript (0-indexed)
+      name: `${monthNames[month.month - 1]} ${month.year}`,
       "App Usages": month.feature,
       "Correct Identification": month.good,
       "Bad Identification": month.bad,
