@@ -24,6 +24,7 @@ function Home() {
     'November': 11,
     'December': 12
   };
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   const monthOptions = Object.keys(monthMap).map((month) => (
     <option key={monthMap[month]} value={monthMap[month]}>
@@ -50,7 +51,9 @@ function Home() {
   const handleEndMonthChange = (event) => {
     setEndMonth(event.target.value);
   };
+  
   const [validRange, setValidRange] = useState(true)
+
   const applyFilter = () => {
     if(!startYear || !startMonth || !endYear || !endMonth || startYear > endYear){
       setValidRange(false)
@@ -67,6 +70,7 @@ function Home() {
       })
     }
   };
+
   const resetFilter = () =>{
     setValidRange(true);
     setStartYear('');
@@ -84,6 +88,7 @@ function Home() {
       })
   }
   const [metrics, setMetrics] = useState(null)
+
   useEffect(() => {
       fetch(METRICS_ENDPOINT)
         .then(res => {
@@ -93,11 +98,14 @@ function Home() {
           setMetrics(data);
         })
     }, [])
+
   const navigate = useNavigate();
   const navigateToResponses = () => {
     navigate('/responses'); 
   };
+
   const [history, setHistory] = useState(null)
+
   useEffect(() => {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
@@ -111,14 +119,17 @@ function Home() {
   }, [])
 
   const transformData = (monthsData) => {
-    const monthNames =  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    
-    return monthsData.map(month => ({
-      name: `${monthNames[month.month - 1]} ${month.year%2000}`,
-      "App Usages": month.feature,
-      "Correct Identification": month.good,
-      "Bad Identification": month.bad,
-    }));
+    const chunks = [];
+    for (let i = 0; i < monthsData.length; i += 12) {
+      const chunk = monthsData.slice(i, i + 12).map(month => ({
+        name: `${monthNames[month.month - 1]} ${month.year % 2000}`,
+        "App Usages": month.feature,
+        "Correct Identification": month.good,
+        "Bad Identification": month.bad,
+      }));
+      chunks.push(chunk);
+    }
+    return chunks;
   };
   
   const [showFeatureUsages, setShowFeatureUsages] = useState(true);
@@ -264,7 +275,7 @@ function Home() {
             </select>
             <select  className='year-dropdown' value={endYear} onChange={handleEndYearChange}>
               <option value="" disabled>END YEAR</option>
-              {[...Array(new Date().getFullYear() - 2023).keys()].map(i => (
+              {[...Array(new Date().getFullYear() - 2023+1).keys()].map(i => (
                 <option key={2024 + i} value={2024 + i}>{2024 + i}</option>
               ))}
             </select>
@@ -276,11 +287,13 @@ function Home() {
             <button className='filter-button' onClick={resetFilter}>RESET</button>
             {!validRange && <InvalidRange/>}
           </div>
-          <div className='charts'>
+          <div className='charts-container'>
+          {history != null && transformData(history).map((dataChunk, index) => (
             <BarChart
-            width={900}
-            height={300}
-              data={history != null ? transformData(history) : null}
+              key={index}
+              width={900}
+              height={300}
+              data={dataChunk}
               margin={{
                 top: 5,
                 right: 20,
@@ -297,6 +310,7 @@ function Home() {
               {showGoodResponses && <Bar dataKey="Correct Identification" fill="#2e7d32" />}
               {showBadResponses && <Bar dataKey="Bad Identification" fill="#d50000" />}
             </BarChart>
+          ))}
           </div>
       </div>
     </main>
