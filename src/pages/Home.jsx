@@ -55,9 +55,9 @@ function Home() {
   const [validRange, setValidRange] = useState(true)
 
   const applyFilter = () => {
-    if(!startYear || !startMonth || !endYear || !endMonth || startYear > endYear){
+    if(!startYear || !startMonth || !endYear || !endMonth || parseInt(startYear) > parseInt(endYear)){
       setValidRange(false)
-    } else if(startYear <= endYear && startMonth > endMonth){
+    } else if(parseInt(startYear) == parseInt(endYear) && parseInt(startMonth) > parseInt(endMonth)){
       setValidRange(false)
     }else{
       fetch(METRICS_HISTORY_ENDPOINT(startYear, startMonth, endYear, endMonth))
