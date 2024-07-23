@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import WasteTypeResponse from "../components/WasteTypeResponse";
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
+import { RESPONSES_ENDPOINT } from "../API/API";
 function ListAllResponses(){
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
     const OpenSidebar = () => {
@@ -9,7 +10,7 @@ function ListAllResponses(){
     }
     const [responses, setResponses] = useState(null)
     useEffect(() => {
-        fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses')
+        fetch(RESPONSES_ENDPOINT)
           .then(res => {
             return res.json();
           })

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './Login.css'
+import { LOGIN_ENDPOINT } from '../API/API';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +26,7 @@ function Login() {
         const user = { username, password };
         
         try {
-            const response = await fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/user/login', {
+            const response = await fetch(LOGIN_ENDPOINT, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

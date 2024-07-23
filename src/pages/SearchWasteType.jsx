@@ -4,6 +4,7 @@ import WasteItems from "../components/WasteItems";
 import UpdateWasteType from "./UpdateWasteType";
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
+import { WASTETYPE_ENDPOINT, WASTETYPE_WITH_INPUT_ENDPOINT } from "../API/API";
 function SearchWasteType(){
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
     const OpenSidebar = () => {
@@ -33,7 +34,7 @@ function SearchWasteType(){
     }
 
     const handleDelete = () =>{
-      fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/waste-type/'+itemName,{
+      fetch(WASTETYPE_WITH_INPUT_ENDPOINT(itemName),{
         method: 'DELETE'
       }).then(res =>{
         setWastetype(null)
@@ -48,7 +49,7 @@ function SearchWasteType(){
     const handleSubmit = (e) =>{
         e.preventDefault()
         setListAll(false)
-        fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/waste-type/'+itemName)
+        fetch(WASTETYPE_WITH_INPUT_ENDPOINT(itemName))
           .then(res => {
             if (res.status === 404) {
               setWastetype(null);
@@ -62,7 +63,7 @@ function SearchWasteType(){
     }
 
     useEffect(() => {
-        fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/waste-type')
+        fetch(WASTETYPE_ENDPOINT)
           .then(res => {
             return res.json();
           })

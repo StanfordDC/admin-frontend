@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import UpdateConfirmation from "../components/UpdateConfirmation";
+import { WASTETYPE_ENDPOINT } from "../API/API";
 function UpdateWasteType({prop}){
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
     const OpenSidebar = () => {
@@ -46,7 +47,7 @@ function UpdateWasteType({prop}){
         }
         let recyclable = isRecyclable == "true"
         const wasteType = {id, instructions, item, links, material, recyclable}
-        fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/waste-type', {
+        fetch(WASTETYPE_ENDPOINT, {
             method: 'PUT',
             body: JSON.stringify(wasteType)
         }).then(() => {setIsUpdated(true);

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import AddConfirmation from '../components/AddConfirmation'
+import { WASTETYPE_ENDPOINT } from "../API/API";
 function AddWasteType(){
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
     const OpenSidebar = () => {
@@ -45,7 +46,7 @@ function AddWasteType(){
             links = null
         }
         const wasteType = {instructions, item, links, material, recyclable}
-        fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/waste-type', {
+        fetch(WASTETYPE_ENDPOINT, {
             method: 'POST',
             body: JSON.stringify(wasteType)
         }).then(() => {setIsAdded(true);
