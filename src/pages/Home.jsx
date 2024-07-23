@@ -46,7 +46,19 @@ function Home() {
   const [history, setHistory] = useState(null)
   useEffect(() => {
     const currentYear = new Date().getFullYear();
-    fetch(METRICS_HISTORY_ENDPOINT(currentYear))
+    const requestBody = {
+      startYear: currentYear,
+      startMonth: 1,
+      endYear: currentYear,
+      endMonth: 12,
+    };
+    fetch(METRICS_HISTORY_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    })
       .then(res => {
         return res.json();
       })
