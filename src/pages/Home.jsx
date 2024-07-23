@@ -10,17 +10,26 @@ import { METRICS_ENDPOINT, METRICS_HISTORY_ENDPOINT } from '../API/API';
 import InvalidRange from '../components/InvalidRange';
 
 function Home() {
-  const fullMonthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-  const monthToIndex = fullMonthNames.reduce((acc, month, index) => {
-    acc[month] = index;
-    return acc;
-}, {});
-  const monthOptions = fullMonthNames.map((month, index) => (
-    <option key={index} value={index + 1}>{month}</option>
-));
+  const monthMap = {
+    'January': 1,
+    'February': 2,
+    'March': 3,
+    'April': 4,
+    'May': 5,
+    'June': 6,
+    'July': 7,
+    'August': 8,
+    'September': 9,
+    'October': 10,
+    'November': 11,
+    'December': 12
+  };
+
+  const monthOptions = Object.keys(monthMap).map((month) => (
+    <option key={monthMap[month]} value={monthMap[month]}>
+        {month}
+    </option>
+  ));
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
   const OpenSidebar = () => {
     setOpenSidebarToggle(!openSidebarToggle)
@@ -45,10 +54,10 @@ function Home() {
   const applyFilter = () => {
     if(!startYear || !startMonth || !endYear || !endMonth || startYear > endYear){
       setValidRange(false)
-    } else if(startYear <= endYear && monthToIndex(startMonth) > monthToIndex(endMonth)){
+    } else if(startYear <= endYear && startMonth > endMonth){
       setValidRange(false)
     }else{
-      fetch(METRICS_HISTORY_ENDPOINT(year))
+      fetch(METRICS_HISTORY_ENDPOINT(startYear, startMonth, endYear, endMonth))
       .then(res => {
         return res.json();
       })
