@@ -130,8 +130,8 @@ body.active-modal {
   margin-right: 5px;
 }
 
-.apply-filter-button {
-  margin-right: 10px;
+.filter-button {
+  margin-right: 5px;
   padding: 10px 15px;
   font-size: 0.8rem;
   font-weight: bold;
@@ -142,7 +142,7 @@ body.active-modal {
   cursor: pointer;
 }
 
-.apply-filter-button:hover{
+.filter-button:hover{
   background-color: #4a96e7;
 }
 

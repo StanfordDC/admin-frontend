@@ -67,6 +67,22 @@ function Home() {
       })
     }
   };
+  const resetFilter = () =>{
+    setValidRange(true);
+    setStartYear('');
+    setStartMonth('');
+    setEndMonth('');
+    setEndYear('');
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    fetch(METRICS_HISTORY_ENDPOINT(2024,7,currentYear,currentMonth+1))
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setHistory(data);
+      })
+  }
   const [metrics, setMetrics] = useState(null)
   useEffect(() => {
       fetch(METRICS_ENDPOINT)
@@ -85,7 +101,7 @@ function Home() {
   useEffect(() => {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
-    fetch(METRICS_HISTORY_ENDPOINT(currentYear,7,currentYear,currentMonth+1))
+    fetch(METRICS_HISTORY_ENDPOINT(2024,7,currentYear,currentMonth+1))
       .then(res => {
         return res.json();
       })
@@ -256,7 +272,8 @@ function Home() {
               <option value="" disabled>END MONTH</option>
               {monthOptions}
             </select>
-            <button className='apply-filter-button' onClick={applyFilter}>APPLY FILTER</button>
+            <button className='filter-button' onClick={applyFilter}>APPLY</button>
+            <button className='filter-button' onClick={resetFilter}>RESET</button>
             {!validRange && <InvalidRange/>}
           </div>
           <div className='charts'>
