@@ -9,23 +9,51 @@ import { useNavigate  } from 'react-router-dom';
 import { METRICS_ENDPOINT, METRICS_HISTORY_ENDPOINT } from '../API/API';
 
 function Home() {
-
+  const fullMonthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  const monthToIndex = fullMonthNames.reduce((acc, month, index) => {
+    acc[month] = index;
+    return acc;
+}, {});
+  const monthOptions = fullMonthNames.map((month, index) => (
+    <option key={index} value={index + 1}>{month}</option>
+));
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
   const OpenSidebar = () => {
     setOpenSidebarToggle(!openSidebarToggle)
   }
-  const [year, setYear] = useState('');
-  const handleYearChange = (event) => {
-    setYear(event.target.value);
+  const [startYear, setStartYear] = useState('');
+  const [startMonth, setStartMonth] = useState('');
+  const [endYear, setEndYear] = useState('');
+  const [endMonth, setEndMonth] = useState('');
+  const handleStartYearChange = (event) => {
+    setStartYear(event.target.value);
   };
+  const handleStartMonthChange = (event) => {
+    setStartMonth(event.target.value);
+  };
+  const handleEndYearChange = (event) => {
+    setEndYear(event.target.value);
+  };
+  const handleEndMonthChange = (event) => {
+    setEndMonth(event.target.value);
+  };
+  const [validRange, setValidRange] = useState(true)
   const applyFilter = () => {
-    if(year){
+    if(!startYear || !startMonth || !endYear || !endMonth || startYear > endYear){
+      setValidRange(false)
+    } else if(startYear <= endYear && monthToIndex(startMonth) > monthToIndex(endMonth)){
+      setValidRange(false)
+    }else{
       fetch(METRICS_HISTORY_ENDPOINT(year))
       .then(res => {
         return res.json();
       })
       .then(data => {
         setHistory(data);
+        setValidRange(true);
       })
     }
   };
@@ -198,13 +226,30 @@ function Home() {
             </button>
           </div>
           <div className='filter-container'>
-            <select  className='year-dropdown' value={year} onChange={handleYearChange}>
-              <option value="" disabled>CHOOSE YEAR</option>
+            <select  className='year-dropdown' value={startYear} onChange={handleStartYearChange}>
+              <option value="" disabled>START YEAR</option>
               {[...Array(new Date().getFullYear() - 2023).keys()].map(i => (
                 <option key={2024 + i} value={2024 + i}>{2024 + i}</option>
               ))}
             </select>
+            <select  className='year-dropdown' value={startMonth} onChange={handleStartMonthChange}>
+              <option value="" disabled>START MONTH</option>
+              {monthOptions}
+            </select>
+            <select  className='year-dropdown' value={endYear} onChange={handleEndYearChange}>
+              <option value="" disabled>END YEAR</option>
+              {[...Array(new Date().getFullYear() - 2023).keys()].map(i => (
+                <option key={2024 + i} value={2024 + i}>{2024 + i}</option>
+              ))}
+            </select>
+            <select  className='year-dropdown' value={endMonth} onChange={handleEndMonthChange}>
+              <option value="" disabled>END MONTH</option>
+              {monthOptions}
+            </select>
             <button className='apply-filter-button' onClick={applyFilter}>APPLY FILTER</button>
+            <div>
+          {!validRange && <h4  style={{ color: 'red' }}>Invalid Range</h4>}
+          </div>
           </div>
           <div className='charts'>
             <BarChart
