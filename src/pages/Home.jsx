@@ -275,7 +275,7 @@ function Home() {
             </select>
             <select  className='year-dropdown' value={endYear} onChange={handleEndYearChange}>
               <option value="" disabled>END YEAR</option>
-              {[...Array(new Date().getFullYear() - 2023+1).keys()].map(i => (
+              {[...Array(new Date().getFullYear() - 2023).keys()].map(i => (
                 <option key={2024 + i} value={2024 + i}>{2024 + i}</option>
               ))}
             </select>
