@@ -46,7 +46,8 @@ function Home() {
   const [history, setHistory] = useState(null)
   useEffect(() => {
     const currentYear = new Date().getFullYear();
-    fetch(METRICS_HISTORY_ENDPOINT(currentYear,1,currentYear,12))
+    const currentMonth = new Date().getMonth();
+    fetch(METRICS_HISTORY_ENDPOINT(currentYear,7,currentYear,currentMonth+1))
       .then(res => {
         return res.json();
       })
@@ -59,7 +60,7 @@ function Home() {
     const monthNames =  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     
     return monthsData.map(month => ({
-      name: `${monthNames[month.month - 1]} ${month.year}`,
+      name: `${monthNames[month.month - 1]} ${month.year%2000}`,
       "App Usages": month.feature,
       "Correct Identification": month.good,
       "Bad Identification": month.bad,
