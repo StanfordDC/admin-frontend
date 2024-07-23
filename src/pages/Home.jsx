@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import { useNavigate  } from 'react-router-dom';
+import { METRICS_ENDPOINT, METRICS_HISTORY_ENDPOINT } from '../API/API';
 
 function Home() {
 
@@ -19,7 +20,7 @@ function Home() {
   };
   const applyFilter = () => {
     if(year){
-      fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses/history/'+year)
+      fetch(METRICS_HISTORY_ENDPOINT(year))
       .then(res => {
         return res.json();
       })
@@ -30,7 +31,7 @@ function Home() {
   };
   const [metrics, setMetrics] = useState(null)
   useEffect(() => {
-      fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses/metrics')
+      fetch(METRICS_ENDPOINT)
         .then(res => {
           return res.json();
         })
@@ -45,7 +46,7 @@ function Home() {
   const [history, setHistory] = useState(null)
   useEffect(() => {
     const currentYear = new Date().getFullYear();
-    fetch('https://cruel-ronda-stanford-ad22351b.koyeb.app/responses/history/'+currentYear)
+    fetch(METRICS_HISTORY_ENDPOINT(currentYear))
       .then(res => {
         return res.json();
       })
