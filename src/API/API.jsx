@@ -1,4 +1,4 @@
-export const BASE_ENDPOINT = 'https://cruel-ronda-stanford-ad22351b.koyeb.app';
+export const BASE_ENDPOINT = 'https://cruel-ronda-stanford-ad22351b.koyeb.app/api';
 export const METRICS_HISTORY_ENDPOINT = (startYear, startMonth, endYear, endMonth) =>
      `${BASE_ENDPOINT}/responses/history/startYear=${startYear}&startMonth=${startMonth}&endYear=${endYear}&endMonth=${endMonth}`;
 export const METRICS_ENDPOINT = `${BASE_ENDPOINT}/responses/metrics`;
