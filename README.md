@@ -67,19 +67,15 @@ The frontend provides a user-interface for admin to manage waste types and repor
 <!-- SCREENSHOT OF THE APP -->
 ## Screenshot of the App
 1. Login Page
-![Login](./public/Screenshots/Login.PNG)
-2. Tenant: Data files Page
-![Data Files](./public/Screenshots/DataFiles.PNG)
-3. Tenant: Upload file Page
-![Upload](./public/Screenshots/Upload.PNG)
-4. Tenant: Campaigns Page
-![Campaigns](./public/Screenshots/Campaigns.PNG)
-5. Tenant: Add Campaign Page
-![Add Campaign](./public/Screenshots/AddCampaign.PNG)
-6. Customer: Rewards Page
-![Rewards](./public/Screenshots/Rewards.PNG)
-7. Error Page (for failover)
-![Error](./public/Screenshots/Error.PNG)
+![Login](./public/login.png)
+2. Home Page
+![Home](./public/home.png)
+3. Add Waste Type Page
+![Add](./public/add-waste-type.png)
+4. Search Waste Type Page
+![Search](./public/search-waste-type.png)
+5. User Responses Page
+![Responses](./public/responses.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
