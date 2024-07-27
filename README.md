@@ -70,7 +70,7 @@ The frontend provides a user-interface for admin to manage waste types and repor
     ```
 
 <!-- SCREENSHOT OF THE APP -->
-## Screenshot of the App
+## Screenshots of the App
 1. Login Page
 ![Login](./public/login.png)
 2. Home Page
