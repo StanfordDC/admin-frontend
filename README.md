@@ -44,10 +44,6 @@ The frontend provides a user-interface for admin to manage waste types and repor
 ### Prerequisites
 1. [Node.js] installed
 2. Admin-backend repository running
-3. Replace variable in curly braces in src/API/API.jsx with admin-backend url
-  ```sh
-  export const BASE_ENDPOINT = '{admin-backend url}/v1';
-   ```
 
 ### Installation
 1. Clone the repo
@@ -60,11 +56,15 @@ The frontend provides a user-interface for admin to manage waste types and repor
     ```
 
 ### Run the App
-1. Change directory to root
+1. Replace variable in curly braces in API.jsx with admin-backend url
+    ```sh
+    export const BASE_ENDPOINT = '{admin-backend url}/v1';
+     ```
+2. Change directory to root
    ```sh
    cd admin-frontend
    ```
-2. Run the app
+3. Run the app
     ```sh
     npm run dev
     ```
